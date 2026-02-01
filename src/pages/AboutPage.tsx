@@ -1,6 +1,58 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui';
+import { useState, useEffect, useRef } from 'react';
+
+// Counter Animation Component
+function AnimatedCounter({ 
+  end, 
+  suffix = '', 
+  duration = 2000 
+}: { 
+  end: number; 
+  suffix?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const startTime = Date.now();
+
+    const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = easeOutQuart(progress);
+      setCount(Math.floor(easedProgress * end));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, end, duration]);
+
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ scale: 0.5, opacity: 0 }}
+      animate={isInView ? { scale: 1, opacity: 1 } : {}}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {count.toLocaleString('vi-VN')}{suffix}
+    </motion.span>
+  );
+}
 
 export function AboutPage() {
   const teamMembers = [
@@ -128,21 +180,101 @@ export function AboutPage() {
               nơi ươm mầm ước mơ khởi nghiệp. Với sự hỗ trợ từ các thầy cô và bạn bè, 
               ÉLÉGANCE đã từ ý tưởng trở thành hiện thực.
             </p>
-            <div className="flex flex-wrap justify-center gap-8">
-              <div className="text-center">
-                <p className="text-5xl font-bold">2026</p>
+            <div className="flex flex-wrap justify-center gap-12 md:gap-16">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-center"
+              >
+                <p className="text-5xl md:text-6xl font-bold">
+                  <AnimatedCounter end={2026} />
+                </p>
                 <p className="text-white/80 font-semibold mt-2">Năm thành lập</p>
-              </div>
-              <div className="text-center">
-                <p className="text-5xl font-bold">6</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-center"
+              >
+                <p className="text-5xl md:text-6xl font-bold">
+                  <AnimatedCounter end={6} />
+                </p>
                 <p className="text-white/80 font-semibold mt-2">Thành viên sáng lập</p>
-              </div>
-              <div className="text-center">
-                <p className="text-5xl font-bold">100%</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center"
+              >
+                <p className="text-5xl md:text-6xl font-bold">
+                  <AnimatedCounter end={100} suffix="%" />
+                </p>
                 <p className="text-white/80 font-semibold mt-2">Sinh viên HAUI</p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center p-6 bg-gradient-to-br from-pink-50 to-white rounded-3xl border border-pink-100"
+            >
+              <p className="text-4xl md:text-5xl font-bold text-pink-500">
+                <AnimatedCounter end={500} suffix="+" />
+              </p>
+              <p className="text-gray-600 font-semibold mt-2">Sản phẩm</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center p-6 bg-gradient-to-br from-pink-50 to-white rounded-3xl border border-pink-100"
+            >
+              <p className="text-4xl md:text-5xl font-bold text-pink-500">
+                <AnimatedCounter end={1200} suffix="+" />
+              </p>
+              <p className="text-gray-600 font-semibold mt-2">Khách hàng</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center p-6 bg-gradient-to-br from-pink-50 to-white rounded-3xl border border-pink-100"
+            >
+              <p className="text-4xl md:text-5xl font-bold text-pink-500">
+                <AnimatedCounter end={48} />
+              </p>
+              <p className="text-gray-600 font-semibold mt-2">Tỉnh thành</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-center p-6 bg-gradient-to-br from-pink-50 to-white rounded-3xl border border-pink-100"
+            >
+              <p className="text-4xl md:text-5xl font-bold text-pink-500">
+                <AnimatedCounter end={99} suffix="%" />
+              </p>
+              <p className="text-gray-600 font-semibold mt-2">Hài lòng</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,29 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { categories } from '../../data/categories';
 
-const displayCategories = [
-  {
-    id: '1',
-    name: 'Váy & Đầm',
-    slug: 'vay',
-    description: 'Những thiết kế váy đầm thanh lịch và nữ tính',
-    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop',
-  },
-  {
-    id: '2',
-    name: 'Túi Xách',
-    slug: 'tui-xach',
-    description: 'Túi xách thời trang cao cấp cho mọi dịp',
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=800&fit=crop',
-  },
-  {
-    id: '3',
-    name: 'Thời Trang Nữ',
-    slug: 'women',
-    description: 'Bộ sưu tập váy, áo, quần dành cho phái đẹp',
-    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=800&fit=crop',
-  },
-];
+// Chỉ hiển thị 3 categories chính trên trang chủ
+const displayCategories = categories.filter(cat => 
+  ['women', 'dresses', 'bags'].includes(cat.slug)
+).slice(0, 3);
 
 export function CategoryShowcase() {
   return (

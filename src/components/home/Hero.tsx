@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useEffect } from "react";
-import { motion, useTransform, useScroll } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useTransform, useScroll, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 
 // ─── Floating Orb ──────────────────────────────────────────────
@@ -199,16 +199,57 @@ function NoiseOverlay() {
 }
 
 // ─── Animated Counter Pill ─────────────────────────────────────
-function StatPill({ label, value }: { label: string; value: string }) {
+function StatPill({ 
+  label, 
+  end, 
+  suffix = '',
+  prefix = '' 
+}: { 
+  label: string; 
+  end: number;
+  suffix?: string;
+  prefix?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const duration = 2000;
+    const startTime = Date.now();
+
+    const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = easeOutQuart(progress);
+      setCount(Math.floor(easedProgress * end));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, end]);
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center"
     >
       <span className="text-3xl md:text-4xl font-serif font-semibold text-gray-800 tracking-tight">
-        {value}
+        {prefix}{count.toLocaleString('vi-VN')}{suffix}
       </span>
       <span className="text-sm text-gray-500 font-medium mt-1">{label}</span>
     </motion.div>
@@ -411,11 +452,11 @@ export function Hero() {
           transition={{ duration: 0.6, delay: stag(6) }}
           className="flex items-center gap-12 md:gap-16 mt-20 bg-white/60 backdrop-blur-sm px-10 py-6 rounded-2xl shadow-sm"
         >
-          <StatPill label="Sản phẩm" value="2.4K+" />
+          <StatPill label="Sản phẩm" end={2400} suffix="+" />
           <div className="w-px h-12 bg-pink-200" />
-          <StatPill label="Tỉnh thành" value="48" />
+          <StatPill label="Tỉnh thành" end={48} />
           <div className="w-px h-12 bg-pink-200" />
-          <StatPill label="Khách hàng" value="12K+" />
+          <StatPill label="Khách hàng" end={12000} suffix="+" />
         </motion.div>
       </motion.div>
 

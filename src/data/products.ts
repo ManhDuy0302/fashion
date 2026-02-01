@@ -115,7 +115,7 @@ export const products: Product[] = [
     description: 'Váy midi dáng xòe nhẹ với màu hồng pastel ngọt ngào, hoàn hảo cho những buổi hẹn hò.',
     price: 2290000,
     images: [
-      'https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=600&h=800&fit=crop',
+      'https://lh3.googleusercontent.com/proxy/pVzAZg52zlkX-VynHtJY47DZV8r43EApxiuRENWGU8RBX9r7DWVV8jtNTGjMPeJFbBjJKhcqBgp5Owuf30uSSYJCLmV4WxiyHxDoBsX3dvYH36qBQSIgWLbeXfTe1QyAFCdnd1MOB51yidw4kt5lCkLS_e-6OoIA3w',
       'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&h=800&fit=crop',
     ],
     category: 'Váy',
@@ -143,7 +143,7 @@ export const products: Product[] = [
     price: 2890000,
     originalPrice: 3590000,
     images: [
-      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&h=800&fit=crop',
+      'https://bizweb.dktcdn.net/100/393/147/products/img-8799.jpg?v=1668498656560',
       'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&h=800&fit=crop',
     ],
     category: 'Váy',
@@ -222,8 +222,8 @@ export const products: Product[] = [
     price: 2490000,
     originalPrice: 2990000,
     images: [
-      'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=600&h=800&fit=crop',
+      'https://pos.nvncdn.com/ad1a25-177013/ps/20251002_sZgBepGPjl.jpeg?v=1759376640',
+      'https://lh3.googleusercontent.com/proxy/pVzAZg52zlkX-VynHtJY47DZV8r43EApxiuRENWGU8RBX9r7DWVV8jtNTGjMPeJFbBjJKhcqBgp5Owuf30uSSYJCLmV4WxiyHxDoBsX3dvYH36qBQSIgWLbeXfTe1QyAFCdnd1MOB51yidw4kt5lCkLS_e-6OoIA3w',
     ],
     category: 'Váy',
     collection: 'elegant',
