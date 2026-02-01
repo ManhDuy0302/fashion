@@ -13,10 +13,10 @@ export function Footer() {
   ];
 
   const supportLinks = [
+    { to: '/about', label: 'Về chúng tôi' },
     { to: '/contact', label: 'Liên hệ' },
     { to: '#', label: 'Vận chuyển & Đổi trả' },
     { to: '#', label: 'Hướng dẫn chọn size' },
-    { to: '#', label: 'Câu hỏi thường gặp' },
   ];
 
   return (
@@ -29,8 +29,7 @@ export function Footer() {
               ÉLÉGANCE
             </Link>
             <p className="mt-4 text-gray-600 text-base font-semibold leading-relaxed">
-              Thời trang hiện đại cho người sành điệu. Sự kết hợp hoàn hảo giữa
-              chất lượng và thiết kế tinh tế.
+              Thời trang hiện đại cho người sành điệu. Được thành lập năm 2026 bởi sinh viên HAUI.
             </p>
           </div>
 
@@ -78,8 +77,8 @@ export function Footer() {
               Liên hệ
             </h3>
             <address className="not-italic text-gray-600 text-base font-semibold space-y-3">
-              <p>123 Đường Nguyễn Huệ</p>
-              <p>Quận 1, TP. Hồ Chí Minh</p>
+              <p>Đại học Công nghiệp Hà Nội</p>
+              <p>Số 298 Cầu Diễn, Bắc Từ Liêm, Hà Nội</p>
               <p>
                 <a href="mailto:hello@elegance.vn" className="hover:text-pink-500 transition-colors">
                   hello@elegance.vn
@@ -138,7 +137,7 @@ export function Footer() {
         <div className="mt-14 pt-8 border-t border-pink-100">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-500 text-base font-semibold">
-              © {currentYear} ÉLÉGANCE. Bảo lưu mọi quyền.
+              © {currentYear} ÉLÉGANCE - Sinh viên HAUI. Bảo lưu mọi quyền.
             </p>
             <div className="flex space-x-8">
               <a href="#" className="text-gray-500 hover:text-pink-500 text-base font-semibold transition-colors">

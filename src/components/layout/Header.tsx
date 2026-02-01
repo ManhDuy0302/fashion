@@ -11,6 +11,7 @@ export function Header() {
   const navLinks = [
     { to: '/', label: 'Trang chủ' },
     { to: '/shop', label: 'Cửa hàng' },
+    { to: '/about', label: 'Về chúng tôi' },
     { to: '/contact', label: 'Liên hệ' },
   ];
 
@@ -38,7 +39,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-10">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}

@@ -13,7 +13,7 @@ export const categories: Category[] = [
     name: 'Váy & Đầm',
     slug: 'dresses',
     description: 'Những thiết kế váy đầm thanh lịch và nữ tính',
-    image: 'https://channel.mediacdn.vn/428462621602512896/2023/5/30/photo-1-16854157800631082142754.png',
+    image: 'https://suckhoedoisong.qltns.mediacdn.vn/Images/quangcao/2021/01/25/1.png',
   },
   {
     id: '3',
