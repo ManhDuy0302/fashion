@@ -158,7 +158,7 @@ export function CheckoutForm() {
                 value={formData.city}
                 onChange={handleChange}
                 className={inputClass}
-                placeholder="TP. Hồ Chí Minh"
+                placeholder="TP. Hà Nội"
                 required
               />
             </div>
